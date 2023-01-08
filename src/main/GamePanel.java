@@ -40,6 +40,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Player player = new Player(this, keyH);
     public Entity[] obj = new Entity[10];
     public Entity npc[] = new Entity[10];
+    public Entity monster[] = new Entity[20];
     ArrayList<Entity> entityList = new ArrayList<>();
 
 
@@ -67,6 +68,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void setUpGame() {
         aSetter.setObject();
         aSetter.setNpc();
+        aSetter.setMonster();
         // playMusic(0);
         gameState = titleState;
 
@@ -143,6 +145,12 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
         }
+        for (int  i = 0; i < monster.length;i ++ ){
+            if (monster[i] != null){
+                monster[i].update();
+            }
+        }
+
         if (gameState == pauseState) {
             //nothing
 
@@ -153,7 +161,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D) g;
+        Graphics2D g2 = (Graphics2D) g ;
 
         //DEBUG
 
@@ -174,6 +182,11 @@ public class GamePanel extends JPanel implements Runnable {
 
             // ADD ENTITIES TO THE LIST
             entityList.add(player);
+            for (int i= 0;i < monster.length;i++ ){
+                if (monster[i] != null){
+                    entityList.add(monster[i]);
+                }
+            }
             for (int i = 0; i < npc.length; i ++){
                 if (npc[i] != null){
                     entityList.add(npc[i]);
@@ -185,6 +198,7 @@ public class GamePanel extends JPanel implements Runnable {
                     entityList.add(obj[i]);
                 }
             }
+
             // SORT
             Collections.sort(entityList, new Comparator<Entity>() {
                 @Override
@@ -194,6 +208,7 @@ public class GamePanel extends JPanel implements Runnable {
                     return result;
                 }
             });
+
 
             // DRAW ENTITIES
             for(int i = 0; i < entityList.size();i++){
