@@ -20,15 +20,14 @@ public class Entity {
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionON = false;
     public int actionLookCounter = 0;
-    String dialogues[] = new String[20];
-    int dialogueIndex = 0;
     public BufferedImage image, image2, image3;
     public String name;
     public boolean collision = false;
-
     // CHARACTER STATUS
     public int maxLife;
     public int life;
+    String[] dialogues = new String[20];
+    int dialogueIndex = 0;
     GamePanel gp;
 
 

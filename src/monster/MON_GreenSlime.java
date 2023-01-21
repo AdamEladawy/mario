@@ -12,21 +12,22 @@ public class MON_GreenSlime extends Entity {
 
 
         name = "Green Slime";
-       speed = 1;
-       maxLife = 4;
-       life = maxLife;
+        speed = 1;
+        maxLife = 4;
+        life = maxLife;
 
-       solidArea.x = 3;
-       solidArea.y = 18;
-       solidArea.width = 42;
-       solidArea.height = 30;
-       solidAreaDefaultX = solidArea.x;
-       solidAreaDefaultY = solidArea.y;
+//       solidArea.x = 3;
+//       solidArea.y = 18;
+//       solidArea.width = 42;
+//       solidArea.height = 30;
+//       solidAreaDefaultX = solidArea.x;
+//       solidAreaDefaultY = solidArea.y;
 
 
-       getImage();
+        getImage();
     }
-    public void getImage(){
+
+    public void getImage() {
         up1 = setUp("/monster/greenslime_down_1");
         up2 = setUp("/monster/greenslime_down_2");
         down1 = setUp("/monster/greenslime_down_1");
@@ -34,33 +35,33 @@ public class MON_GreenSlime extends Entity {
         left1 = setUp("/monster/greenslime_down_1");
         left2 = setUp("/monster/greenslime_down_2");
         right1 = setUp("/monster/greenslime_down_1");
-         right2 = setUp("/monster/greenslime_down_2");
+        right2 = setUp("/monster/greenslime_down_2");
     }
-   public void setAction()
-{
+
+    public void setAction() {
 
         actionLookCounter++;
 
         if (actionLookCounter == 120) {
 
-        Random random = new Random();
-        int i = random.nextInt(100) + 1;// pick a number between 1-100
-        if (i <= 25) {
-        direction = "up";
+            Random random = new Random();
+            int i = random.nextInt(100) + 1;// pick a number between 1-100
+            if (i <= 25) {
+                direction = "up";
 
-        }
-        if (i > 25 && i <= 50) {
-        direction = "down";
+            }
+            if (i > 25 && i <= 50) {
+                direction = "down";
 
+            }
+            if (i > 50 && i <= 75) {
+                direction = "left";
+            }
+            if (i > 75 && i <= 100) {
+                direction = "right";
+            }
+            actionLookCounter = 0;
         }
-        if (i > 50 && i <= 75) {
-        direction = "left";
-        }
-        if (i > 75 && i <= 100) {
-        direction = "right";
-        }
-        actionLookCounter = 0;
-        }
-        }
-        }
+    }
+}
 

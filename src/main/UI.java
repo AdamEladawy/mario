@@ -2,7 +2,6 @@ package main;
 
 import adam.entity.Entity;
 import object.OBJ_Heart;
-//import object.SuperObject;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

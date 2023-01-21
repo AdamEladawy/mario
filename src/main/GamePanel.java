@@ -2,7 +2,6 @@ package main;
 
 import adam.entity.Entity;
 import adam.entity.Player;
-//import object.SuperObject;
 import tile.TileManager;
 
 import javax.swing.*;
@@ -34,25 +33,21 @@ public class GamePanel extends JPanel implements Runnable {
     public UI ui = new UI(this);
     public KeyHandler keyH = new KeyHandler(this);
     public EventHandler eHandler = new EventHandler(this);
-    Thread gameThread;
-
     // ENTITY AND OBJECT
     public Player player = new Player(this, keyH);
     public Entity[] obj = new Entity[10];
-    public Entity npc[] = new Entity[10];
-    public Entity monster[] = new Entity[20];
-    ArrayList<Entity> entityList = new ArrayList<>();
-
-
+    public Entity[] npc = new Entity[10];
+    public Entity[] monster = new Entity[2];
     //GAME STATE
     public int gameState;
+    Thread gameThread;
+    ArrayList<Entity> entityList = new ArrayList<>();
     //fps
     int Fps = 60;
     TileManager tileM = new TileManager(this);
     Sound music = new Sound();
     // ENTITY AND OBJECT
     Sound Se = new Sound();
-
 
 
     public GamePanel() {
@@ -145,8 +140,8 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
         }
-        for (int  i = 0; i < monster.length;i ++ ){
-            if (monster[i] != null){
+        for (int i = 0; i < monster.length; i++) {
+            if (monster[i] != null) {
                 monster[i].update();
             }
         }
@@ -161,7 +156,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D) g ;
+        Graphics2D g2 = (Graphics2D) g;
 
         //DEBUG
 
@@ -182,28 +177,29 @@ public class GamePanel extends JPanel implements Runnable {
 
             // ADD ENTITIES TO THE LIST
             entityList.add(player);
-            for (int i= 0;i < monster.length;i++ ){
-                if (monster[i] != null){
+            for (int i = 0; i < monster.length; i++) {
+                if (monster[i] != null) {
                     entityList.add(monster[i]);
                 }
             }
-            for (int i = 0; i < npc.length; i ++){
-                if (npc[i] != null){
+            for (int i = 0; i < npc.length; i++) {
+                if (npc[i] != null) {
                     entityList.add(npc[i]);
 
                 }
             }
-            for (int i= 0;i < obj.length;i++ ){
-                if (obj[i] != null){
+            for (int i = 0; i < obj.length; i++) {
+                if (obj[i] != null) {
                     entityList.add(obj[i]);
                 }
             }
+
 
             // SORT
             Collections.sort(entityList, new Comparator<Entity>() {
                 @Override
                 public int compare(Entity e1, Entity e2) {
-                    int result = Integer.compare(e1.worldY,e2.worldY);
+                    int result = Integer.compare(e1.worldY, e2.worldY);
 
                     return result;
                 }
@@ -211,17 +207,17 @@ public class GamePanel extends JPanel implements Runnable {
 
 
             // DRAW ENTITIES
-            for(int i = 0; i < entityList.size();i++){
+            for (int i = 0; i < entityList.size(); i++) {
                 entityList.get(i).draw(g2);
 
             }
-             // EMPTY ENTITY LIST
-            for(int i = 0; i < entityList.size();i++){
+            // EMPTY ENTITY LIST
+            for (int i = 0; i < entityList.size(); i++) {
                 entityList.remove(i);
 
             }
 
-         //UI
+            //UI
             ui.draw(g2);
 
 
@@ -249,7 +245,6 @@ public class GamePanel extends JPanel implements Runnable {
             g2.drawString("Draw Time" + passed, 10, 400);
             System.out.println("Draw Image" + passed);
         }
-
 
 
     }
