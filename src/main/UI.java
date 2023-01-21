@@ -169,6 +169,8 @@ public class UI {
                 g2.drawString(">", x - gp.tileSize, y);
             }
 
+
+
             text = "QUIT";
             x = getXForCenteredText(text);
             y += gp.tileSize;
