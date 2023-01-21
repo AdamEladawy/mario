@@ -5,6 +5,10 @@ import main.GamePanel;
 
 import java.util.Random;
 
+
+
+
+
 public class MON_GreenSlime extends Entity {
 
     public MON_GreenSlime(GamePanel gp) {
@@ -17,8 +21,8 @@ public class MON_GreenSlime extends Entity {
        life = maxLife;
 
        solidArea.x = 3;
-       solidArea.y = 18;
-       solidArea.width = 42;
+      solidArea.y = 18;
+      solidArea.width = 42;
        solidArea.height = 30;
        solidAreaDefaultX = solidArea.x;
        solidAreaDefaultY = solidArea.y;
@@ -26,12 +30,12 @@ public class MON_GreenSlime extends Entity {
 
        getImage();
     }
-    public void getImage(){
+     public void getImage(){
         up1 = setUp("/monster/greenslime_down_1");
         up2 = setUp("/monster/greenslime_down_2");
         down1 = setUp("/monster/greenslime_down_1");
-        down2 = setUp("/monster/greenslime_down_2");
-        left1 = setUp("/monster/greenslime_down_1");
+       down2 = setUp("/monster/greenslime_down_2");
+       left1 = setUp("/monster/greenslime_down_1");
         left2 = setUp("/monster/greenslime_down_2");
         right1 = setUp("/monster/greenslime_down_1");
          right2 = setUp("/monster/greenslime_down_2");
@@ -45,7 +49,7 @@ public class MON_GreenSlime extends Entity {
 
         Random random = new Random();
         int i = random.nextInt(100) + 1;// pick a number between 1-100
-        if (i <= 25) {
+       if (i <= 25) {
         direction = "up";
 
         }
@@ -53,7 +57,7 @@ public class MON_GreenSlime extends Entity {
         direction = "down";
 
         }
-        if (i > 50 && i <= 75) {
+       if (i > 50 && i <= 75) {
         direction = "left";
         }
         if (i > 75 && i <= 100) {
@@ -62,5 +66,5 @@ public class MON_GreenSlime extends Entity {
         actionLookCounter = 0;
         }
         }
-        }
+      }
 
