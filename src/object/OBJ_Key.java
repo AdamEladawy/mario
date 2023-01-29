@@ -12,7 +12,7 @@ public class OBJ_Key extends Entity  {//SuperObject
     public OBJ_Key(GamePanel gp) {
     super(gp);
         name = "Key";
-        down1 = setUp("/objects/key");
+        down1 = setUp("/objects/key",gp.tileSize,gp.tileSize);
 
     }
 }
