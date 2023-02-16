@@ -2,6 +2,8 @@ package adam.entity;
 
 import main.GamePanel;
 import main.KeyHandler;
+import object.OBJ_Shield_Wood;
+import object.OBJ_Sword_Normal;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -52,8 +54,24 @@ public class Player extends Entity {
         direction = "down";
 
         //PLAYER STATUS
+        level = 1;
         maxLife = 6;
         life = maxLife;
+        strength = 1;// The more strength he has, the more damage he gives
+        dexterity = 1;// The more dexterity he has, the less damage he receives
+        exp = 0;
+        nextLevelExp = 5;
+        coin = 0;
+        currentWeapon = new OBJ_Sword_Normal(gp);
+        currentShield = new OBJ_Shield_Wood(gp);
+        attack = getAttack();// The total attack Value is decided by strength and weapon
+        defense  = getDefense(); // The total event value is decided by dexterity and shield
+    }
+    public int getAttack(){
+        return  attack = strength * currentWeapon.attackValue;
+    }
+    public int getDefense(){
+      return  defense  = dexterity * currentShield.defenseValue;
     }
 
     public void getPlayerImage() {

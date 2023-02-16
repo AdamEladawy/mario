@@ -52,6 +52,7 @@ public class GamePanel extends JPanel implements Runnable {
     Sound music = new Sound();
     // ENTITY AND OBJECT
     Sound Se = new Sound();
+    public final int characterState = 4;
 
 
 
