@@ -113,8 +113,9 @@ public class EventHandler {
             gp.player.attackCancel = true;
             gp.gameState = gameState;
             gp.playSE(2);
-            gp.ui.currentDialogue = "You drank the water./n Your life has been recovered";
+            gp.ui.currentDialogue = "You drank the water. /nYour  life has been recovered";
             gp.player.life = gp.player.maxLife;
+            gp.aSetter.setMonster();
 
         }
 

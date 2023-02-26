@@ -11,6 +11,7 @@ public OBJ_Sword_Normal(GamePanel gp){
      name = "Normal Sword";
      down1 = setUp("/objects/sword_normal",gp.tileSize,gp.tileSize);
      attackValue = 1;
+     description = "["+name + "]/n old sword.";
 
 
 

@@ -20,8 +20,11 @@ GamePanel gp;
         type = 2;
         name = "Green Slime";
        speed = 1;
-       maxLife = 10;//life of the monster
+       maxLife = 4;//life of the monster
        life = maxLife;
+       attack = 5;
+       defense = 0;
+       exp = 2;
 
        solidArea.x = 3;
       solidArea.y = 18;

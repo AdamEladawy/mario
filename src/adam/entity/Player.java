@@ -2,11 +2,13 @@ package adam.entity;
 
 import main.GamePanel;
 import main.KeyHandler;
+import object.OBJ_Key;
 import object.OBJ_Shield_Wood;
 import object.OBJ_Sword_Normal;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class Player extends Entity {
 
@@ -16,6 +18,8 @@ public class Player extends Entity {
     /// /public int hasKey = 0;
     int standCounter = 0;
     public boolean attackCancel = false;
+    public ArrayList<Entity> inventory = new ArrayList<>();
+    public final int maxInventorySize  = 20;
 
 
     public Player(GamePanel gp, KeyHandler keyH) {
@@ -43,6 +47,7 @@ public class Player extends Entity {
         setDefaultValue();
         getPlayerImage();
         getPlayerAttackImage();
+        setItems();
 
     }
 
@@ -66,6 +71,15 @@ public class Player extends Entity {
         currentShield = new OBJ_Shield_Wood(gp);
         attack = getAttack();// The total attack Value is decided by strength and weapon
         defense  = getDefense(); // The total event value is decided by dexterity and shield
+    }
+    public void setItems(){
+        inventory.add(currentWeapon);
+        inventory.add(currentShield);
+        inventory.add(new OBJ_Key(gp));
+
+
+
+
     }
     public int getAttack(){
         return  attack = strength * currentWeapon.attackValue;
@@ -313,7 +327,11 @@ public void attacking(){
 
             if (invincible == false){
                 gp.playSE(6);
-                life -= 1;
+                int damage = gp.monster[i].attack - defense;
+                if (damage < 0){
+                    damage = 0;
+                }
+                life -= damage;
                 invincible = true;
 
             }
@@ -324,15 +342,46 @@ public void attacking(){
        if (i != 999){
            if(!gp.monster[i].invincible){
                gp.playSE(5);
-               gp.monster[i].life -=1;
+
+               int damage = attack - gp.monster[i].defense;
+               if (damage < 0){
+                   damage = 0;
+               }
+               gp.monster[i].life -= damage;
+               gp.ui.addMessage(damage + "damage");
+
                gp.monster[i].invincible =true;
                gp.monster[i].damageReaction();
 
                if (gp.monster[i].life <= 0){
                   gp.monster[i].dying = true;
+                  gp.ui.addMessage("Killed the " + gp.monster[i].name + "!");
+                   gp.ui.addMessage("Exp +" + gp.monster[i].exp);
+                  exp +=gp.monster[i].exp;
+                  checkLevelUp();
                }
            }
        }
+    }
+    public void checkLevelUp(){
+
+        if (exp >= nextLevelExp){
+
+            level++;
+            nextLevelExp = nextLevelExp*2;
+            maxLife += 2;
+            strength ++;
+            dexterity ++;
+            attack = getAttack();
+            defense = getDefense();
+
+            gp.playSE(8);
+            gp.gameState = gp.dialogueState;
+            gp.ui.currentDialogue = "You are level "+ level + " now! /n" + "You fell stronger";
+
+
+
+        }
     }
 
     public void draw(Graphics2D g2) {

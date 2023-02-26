@@ -60,6 +60,7 @@ public class Entity {
     //ITEM ATTRIBUTES
     public int attackValue;
     public int defenseValue;
+    public String description = "";
 
 
     public Entity(GamePanel gp) {
@@ -115,7 +116,11 @@ public class Entity {
           if (!gp.player.invincible){
               // we can give damage
               gp.playSE(6);
-              gp.player.life -= 1;
+              int damage = attack - gp.player.defense;
+              if (damage < 0){
+                  damage = 0;
+              }
+              gp.player.life -= damage;
               gp.player.invincible = true;
 
           }
