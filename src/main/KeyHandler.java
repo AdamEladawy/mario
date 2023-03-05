@@ -10,7 +10,7 @@ public class KeyHandler implements KeyListener {
     Graphics2D g2;
 
     //DEBUG
-    boolean checkDrawTime = false;
+    boolean showDebugText = false;
 
     public KeyHandler(GamePanel gp) {
         this.gp = gp;
@@ -160,11 +160,15 @@ public void playState(int code){
 
 
     if (code == KeyEvent.VK_T) {
-        if (!checkDrawTime) {
-            checkDrawTime = true;
-        } else if (checkDrawTime) {
-            checkDrawTime = false;
+        if (!showDebugText) {
+            showDebugText = true;
+        } else if (showDebugText) {
+            showDebugText = false;
         }
+
+    }
+    if (code == KeyEvent.VK_R) {
+        gp.tileM.loadMap("/maps/worldV2.txt");
 
     }
 }
@@ -210,6 +214,9 @@ public void characterState(int code){
             gp.playSE(9);
         }
 
+    }
+    if (code == KeyEvent.VK_SPACE){// maybe eneter
+       gp.player.selectItem();
     }
 
     }

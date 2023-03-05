@@ -104,17 +104,31 @@ public class Player extends Entity {
         right2 = setUp("/player/boy_right_2",gp.tileSize,gp.tileSize);
 
 
+
     }
     public void getPlayerAttackImage(){
 
-        attackUp1 = setUp("/player/boy_attack_up_1",gp.tileSize,gp.tileSize*2);
-        attackUp2 = setUp("/player/boy_attack_up_2",gp.tileSize,gp.tileSize*2);
-        attackDown1 = setUp("/player/boy_attack_down_1",gp.tileSize,gp.tileSize*2);
-        attackDown2 = setUp("/player/boy_attack_down_2",gp.tileSize,gp.tileSize*2);
-        attackLeft1 = setUp("/player/boy_attack_left_1",gp.tileSize*2,gp.tileSize);
-        attackLeft2 = setUp("/player/boy_attack_left_2",gp.tileSize*2,gp.tileSize);
-        attackRight1= setUp("/player/boy_attack_right_1",gp.tileSize*2,gp.tileSize);
-        attackRight2 = setUp("/player/boy_attack_right_2",gp.tileSize*2,gp.tileSize);
+        if (currentWeapon.type == type_sword){
+            attackUp1 = setUp("/player/boy_attack_up_1",gp.tileSize,gp.tileSize*2);
+            attackUp2 = setUp("/player/boy_attack_up_2",gp.tileSize,gp.tileSize*2);
+            attackDown1 = setUp("/player/boy_attack_down_1",gp.tileSize,gp.tileSize*2);
+            attackDown2 = setUp("/player/boy_attack_down_2",gp.tileSize,gp.tileSize*2);
+            attackLeft1 = setUp("/player/boy_attack_left_1",gp.tileSize*2,gp.tileSize);
+            attackLeft2 = setUp("/player/boy_attack_left_2",gp.tileSize*2,gp.tileSize);
+            attackRight1= setUp("/player/boy_attack_right_1",gp.tileSize*2,gp.tileSize);
+            attackRight2 = setUp("/player/boy_attack_right_2",gp.tileSize*2,gp.tileSize);
+        }
+        if (currentWeapon.type == type_axe){
+            attackUp1 = setUp("/player/boy_axe_up_1",gp.tileSize,gp.tileSize*2);
+            attackUp2 = setUp("/player/boy_axe_up_2",gp.tileSize,gp.tileSize*2);
+            attackDown1 = setUp("/player/boy_axe_down_1",gp.tileSize,gp.tileSize*2);
+            attackDown2 = setUp("/player/boy_axe_down_2",gp.tileSize,gp.tileSize*2);
+            attackLeft1 = setUp("/player/boy_axe_left_1",gp.tileSize*2,gp.tileSize);
+            attackLeft2 = setUp("/player/boy_axe_left_2",gp.tileSize*2,gp.tileSize);
+            attackRight1= setUp("/player/boy_axe_right_1",gp.tileSize*2,gp.tileSize);
+            attackRight2 = setUp("/player/boy_axe_right_2",gp.tileSize*2,gp.tileSize);
+        }
+
 
 
 
@@ -400,7 +414,31 @@ public void attacking(){
 
         }
     }
+public void selectItem(){
 
+        int itemIndex = gp.ui.getItemIndexOnSlot();
+        if (itemIndex < inventory.size()){
+
+            Entity selectedItem = inventory.get(itemIndex);
+
+            if (selectedItem.type ==  type_sword || selectedItem.type == type_axe){
+
+                currentWeapon = selectedItem;
+                attack = getAttack();
+                getPlayerAttackImage();
+
+            }
+            if (selectedItem.type == type_shield){
+                currentShield = selectedItem;
+                defense = getDefense();
+            }
+            if (selectedItem.type == type_consumable){
+
+                selectedItem.use(this);
+                inventory.remove(itemIndex);
+            }
+        }
+}
     public void draw(Graphics2D g2) {
         BufferedImage image = null;
         int tempScreenX = screenX;
