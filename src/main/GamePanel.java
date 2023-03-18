@@ -164,9 +164,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         }
 
-
     }
-
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g ;
@@ -197,14 +195,14 @@ public class GamePanel extends JPanel implements Runnable {
 
                 }
             }
-            for (int i= 0;i < monster.length;i++ ){
-                if (monster[i] != null){
-                    entityList.add(monster[i]);
-                }
-            }
             for (int i= 0;i < obj.length;i++ ){
                 if (obj[i] != null){
                     entityList.add(obj[i]);
+                }
+            }
+            for (int i= 0;i < monster.length;i++ ){
+                if (monster[i] != null){
+                    entityList.add(monster[i]);
                 }
             }
 
@@ -270,6 +268,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 
     }
+
 
     public void playMusic(int i) {
         music.setFile(i);

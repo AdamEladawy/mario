@@ -356,7 +356,7 @@ public void attacking(){
 
         if(i != 999){
 
-            if (invincible == false){
+            if (invincible == false && gp.monster[i].dying == false){
                 gp.playSE(6);
                 int damage = gp.monster[i].attack - defense;
                 if (damage < 0){
