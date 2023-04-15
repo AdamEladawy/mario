@@ -3,7 +3,7 @@ package main;
 
 public class EventHandler {
     GamePanel gp;
-    EventRect eventRect[][];
+    EventRect[][] eventRect;
     //Rectangle eventRect;
     // int eventRectDefaultX,eventRectDefaultY;
     int PreviousEventX, PreviousEventY;
@@ -40,17 +40,20 @@ public class EventHandler {
         // Check if the player character is more than 1 tile away from the last event
         int xDistance = Math.abs(gp.player.worldX - PreviousEventX);
         int yDistance = Math.abs(gp.player.worldY - PreviousEventY);
-        int distance = Math.max(xDistance,yDistance);
-        if(distance > gp.tileSize){
+        int distance = Math.max(xDistance, yDistance);
+        if (distance > gp.tileSize) {
             canTouchEvent = true;
 
         }
-        if (canTouchEvent){
-            if (hit(27, 16, "right")) {damagePit(27, 16, gp.dialogueState);}
+        if (canTouchEvent) {
+            if (hit(27, 16, "right")) {
+                damagePit(27, 16, gp.dialogueState);
+            }
             //if (hit(27, 16, "right") == true) {teleport(gp.dialogueState);}
-            if (hit(23, 12, "up") ) { healingPool(23, 12, gp.dialogueState);}
+            if (hit(23, 12, "up")) {
+                healingPool(23, 12, gp.dialogueState);
+            }
         }
-
 
 
     }
@@ -63,7 +66,7 @@ public class EventHandler {
         eventRect[col][row].x = col * gp.tileSize + eventRect[col][row].x;
         eventRect[col][row].y = row * gp.tileSize + eventRect[col][row].y;
 
-        if (gp.player.solidArea.intersects(eventRect[col][row]) && eventRect[col][row].eventDone == false) {
+        if (gp.player.solidArea.intersects(eventRect[col][row]) && !eventRect[col][row].eventDone) {
             if (gp.player.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
                 hit = true;
 
@@ -108,13 +111,14 @@ public class EventHandler {
 
     public void healingPool(int col, int row, int gameState) {
 
-        if (gp.keyH.enterPressed  ==  true) {
+        if (gp.keyH.enterPressed) {
 
             gp.player.attackCancel = true;
             gp.gameState = gameState;
             gp.playSE(2);
-            gp.ui.currentDialogue = "You drank the water./nYour life has been/nrecovered";
+            gp.ui.currentDialogue = "You drank the water./nYour life and mana have /nbeen recovered";
             gp.player.life = gp.player.maxLife;
+            gp.player.mana = gp.player.maxMana;
             gp.aSetter.setMonster();
 
         }
