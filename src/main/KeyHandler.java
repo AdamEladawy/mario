@@ -5,19 +5,22 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
-    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed,shotKeyPressed;
+    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed, shotKeyPressed;
     GamePanel gp;
     Graphics2D g2;
 
     //DEBUG
     boolean showDebugText = false;
+
     public KeyHandler(GamePanel gp) {
         this.gp = gp;
     }
+
     @Override
     public void keyTyped(KeyEvent e) {
 
     }
+
     @Override
     public void keyPressed(KeyEvent e) {
 
@@ -242,7 +245,7 @@ public class KeyHandler implements KeyListener {
 
         }
         if (code == KeyEvent.VK_F) {
-           shotKeyPressed = false;
+            shotKeyPressed = false;
         }
 
     }

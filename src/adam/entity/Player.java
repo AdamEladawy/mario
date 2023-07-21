@@ -6,7 +6,6 @@ import object.OBJ_Fireball;
 import object.OBJ_Key;
 import object.OBJ_Shield_Wood;
 import object.OBJ_Sword_Normal;
-import tile_interactive.InteractiveTile;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -77,7 +76,7 @@ public class Player extends Entity {
         currentWeapon = new OBJ_Sword_Normal(gp);
         currentShield = new OBJ_Shield_Wood(gp);
         projectile = new OBJ_Fireball(gp);
-      //  projectile = new OBJ_ROCK(gp);
+        //  projectile = new OBJ_ROCK(gp);
         attack = getAttack();// The total attack Value is decided by strength and weapon
         defense = getDefense(); // The total event value is decided by dexterity and shield
     }
@@ -187,9 +186,7 @@ public class Player extends Entity {
             contactMonster(monsterIndex);
 
             // CHECK INTERACTIVE COLLISION
-            int iTileIndex = gp.cChecker.checkEntity(this,gp.iTile);
-
-
+            int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
 
 
             //  CHECK EVENT COLLISION
@@ -232,19 +229,18 @@ public class Player extends Entity {
                 }
                 spriteCounter = 0;
             }
-        }
-        else {
-            standCounter ++;
-            if (standCounter == 20){
+        } else {
+            standCounter++;
+            if (standCounter == 20) {
                 spriteNum = 1;
                 standCounter = 0;
             }
         }
         if (gp.keyH.shotKeyPressed == true && projectile.alive == false
-                && shotAvailableCounter == 30 && projectile.haveResource(this) == true){
+                && shotAvailableCounter == 30 && projectile.haveResource(this) == true) {
 
             // SET DEFAULT COORDINATES, DIRECTION AND USER
-            projectile.set(worldX,worldY,direction,true,this);
+            projectile.set(worldX, worldY, direction, true, this);
 
             // SUBTRACT THE COST MANA,AMMO,ETC.
             projectile.subtractResource(this);
@@ -266,14 +262,14 @@ public class Player extends Entity {
             }
         }
 
-        if(shotAvailableCounter < 30){
+        if (shotAvailableCounter < 30) {
             shotAvailableCounter++;
         }
-        if (life > maxLife){
-            life  = maxLife;
+        if (life > maxLife) {
+            life = maxLife;
         }
-        if (mana  > maxMana){
-           mana = maxMana;
+        if (mana > maxMana) {
+            mana = maxMana;
         }
     }
 
@@ -316,9 +312,9 @@ public class Player extends Entity {
             solidArea.height = attackArea.height;
             //Check monster collision with the updated worldX, worldY and solidArea
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-            damageMonster(monsterIndex,attack);
+            damageMonster(monsterIndex, attack);
 
-            int iTileIndex  = gp.cChecker.checkEntity(this,gp.iTile);
+            int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
             damageInteractiveTile(iTileIndex);
 
             // After checking ,restore the original data
@@ -342,7 +338,7 @@ public class Player extends Entity {
         if (i != 999) {
 
             // PICK ONLY ITEMS
-            if (gp.obj[i].type == type_pickupOnly){
+            if (gp.obj[i].type == type_pickupOnly) {
 
                 gp.obj[i].use(this);
                 gp.obj[i] = null;
@@ -434,7 +430,7 @@ public class Player extends Entity {
         }
     }
 
-    public void damageMonster(int i,int attack) {
+    public void damageMonster(int i, int attack) {
         if (i != 999) {
             if (!gp.monster[i].invincible) {
                 gp.playSE(5);
@@ -459,20 +455,21 @@ public class Player extends Entity {
             }
         }
     }
-    public void damageInteractiveTile(int i){
 
-        if(i != 999 && gp.iTile[i].destructible == true
-                && gp.iTile[i].isCorrectItem(this) == true && gp.iTile[i].invincible == false){
+    public void damageInteractiveTile(int i) {
+
+        if (i != 999 && gp.iTile[i].destructible == true
+                && gp.iTile[i].isCorrectItem(this) == true && gp.iTile[i].invincible == false) {
 
             gp.iTile[i].playSE();
-            gp.iTile[i].life --;
+            gp.iTile[i].life--;
             gp.iTile[i].invincible = true;
 
             // Generate PArticle
-            generateParticle(gp.iTile[i],gp.iTile[i]);
+            generateParticle(gp.iTile[i], gp.iTile[i]);
 
 
-            if (gp.iTile[i].life == 0){
+            if (gp.iTile[i].life == 0) {
                 gp.iTile[i] = gp.iTile[i].getDestroyedForm();
             }
         }

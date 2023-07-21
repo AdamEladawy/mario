@@ -3,28 +3,30 @@ package tile_interactive;
 import adam.entity.Entity;
 import main.GamePanel;
 
-import java.awt.*;
-
 public class InteractiveTile extends Entity {
 
-    GamePanel gp;
     public boolean destructible = false;
+    GamePanel gp;
 
-    public InteractiveTile(GamePanel gp, int col,int row) {
+    public InteractiveTile(GamePanel gp, int col, int row) {
         super(gp);
         this.gp = gp;
     }
-    public boolean isCorrectItem(Entity entity){
+
+    public boolean isCorrectItem(Entity entity) {
         boolean isCorrectItem = false;
         return isCorrectItem;
     }
-    public void playSE(){
+
+    public void playSE() {
 
     }
-    public InteractiveTile getDestroyedForm(){
-     InteractiveTile tile = null;
+
+    public InteractiveTile getDestroyedForm() {
+        InteractiveTile tile = null;
         return tile;
     }
+
     public void update() {
 
         if (invincible == true) {

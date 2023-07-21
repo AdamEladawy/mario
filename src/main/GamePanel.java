@@ -2,7 +2,6 @@ package main;
 
 import adam.entity.Entity;
 import adam.entity.Player;
-import adam.entity.Projectile;
 import tile.TileManager;
 import tile_interactive.InteractiveTile;
 
@@ -31,34 +30,28 @@ public class GamePanel extends JPanel implements Runnable {
     final int scale = 3;
     public final int tileSize = orginalTileSize * scale;// 48x48 title
     public final int screenWidth = tileSize * maxScreenCol;// 768 pixels
+    //FOR FULL SCREEN
+    int screenWidth2 = screenWidth;
     public final int screenHeight = tileSize * maxScreenRow;//576 pixels
+    int screenHeight2 = screenHeight;
     public CollisionChecker cChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
     public UI ui = new UI(this);
     public KeyHandler keyH = new KeyHandler(this);
     public EventHandler eHandler = new EventHandler(this);
-
-    //FOR FULL SCREEN
-    int screenWidth2 = screenWidth;
-    int screenHeight2 = screenHeight;
-    BufferedImage tempScreen;
-    Graphics2D g2;
-
-
-
     // ENTITY AND OBJECT
     public Player player = new Player(this, keyH);
     public Entity[] obj = new Entity[20];
     public Entity[] npc = new Entity[10];
     public Entity[] monster = new Entity[20];
     public InteractiveTile iTile[] = new InteractiveTile[50];
-   public ArrayList<Entity> projectileList = new ArrayList<>();
-   public  ArrayList<Entity> particleList = new ArrayList<>();
-    ArrayList<Entity> entityList = new ArrayList<>();
-
-
+    public ArrayList<Entity> projectileList = new ArrayList<>();
+    public ArrayList<Entity> particleList = new ArrayList<>();
     //GAME STATE
     public int gameState;
+    BufferedImage tempScreen;
+    Graphics2D g2;
+    ArrayList<Entity> entityList = new ArrayList<>();
     Thread gameThread;
 
     //fps
@@ -88,7 +81,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         gameState = titleState;
 
-        tempScreen = new BufferedImage(screenWidth,screenHeight,BufferedImage.TYPE_INT_ARGB);
+        tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
         g2 = (Graphics2D) tempScreen.getGraphics();
 
 
@@ -142,7 +135,7 @@ public class GamePanel extends JPanel implements Runnable {
             lastTime = currentTime;
             if (delta >= 1) {
                 update();
-               // repaint();
+                // repaint();
                 drawToTempScreen();// draw everything to the buffered image
                 drawToScreen();// draw the buffered image to the screen
                 delta--;
@@ -201,8 +194,8 @@ public class GamePanel extends JPanel implements Runnable {
 
                 }
             }
-            for (int i = 0; i < iTile.length;i++ ){
-                if (iTile[i] != null){
+            for (int i = 0; i < iTile.length; i++) {
+                if (iTile[i] != null) {
                     iTile[i].update();
                 }
             }
@@ -215,7 +208,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     }
 
-    public void drawToTempScreen(){
+    public void drawToTempScreen() {
 
         //DEBUG
 
@@ -236,8 +229,8 @@ public class GamePanel extends JPanel implements Runnable {
 
 
             // INTERACTIVE TILE
-            for (int i = 0; i < iTile.length; i++){
-                if (iTile[i] != null){
+            for (int i = 0; i < iTile.length; i++) {
+                if (iTile[i] != null) {
                     iTile[i].draw(g2);
                 }
             }
@@ -464,10 +457,10 @@ public class GamePanel extends JPanel implements Runnable {
 //
 //    }
 
-    public void drawToScreen(){
+    public void drawToScreen() {
 
         Graphics g = getGraphics();
-        g.drawImage(tempScreen,0,0,screenWidth2,screenHeight2,null);
+        g.drawImage(tempScreen, 0, 0, screenWidth2, screenHeight2, null);
         g.dispose();
     }
 

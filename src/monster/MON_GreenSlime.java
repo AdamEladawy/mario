@@ -1,7 +1,6 @@
 package monster;
 
 import adam.entity.Entity;
-import adam.entity.Projectile;
 import main.GamePanel;
 import object.OBJ_Coin_Bronze;
 import object.OBJ_Heart;
@@ -77,9 +76,9 @@ public class MON_GreenSlime extends Entity {
             actionLookCounter = 0;
         }
 
-        int i = new Random().nextInt(100)+1;
-        if (i > 99 && projectile.alive == false && shotAvailableCounter == 30){
-            projectile.set(worldX,worldY,direction,true,this);
+        int i = new Random().nextInt(100) + 1;
+        if (i > 99 && projectile.alive == false && shotAvailableCounter == 30) {
+            projectile.set(worldX, worldY, direction, true, this);
             gp.projectileList.add(projectile);
             shotAvailableCounter = 0;
         }
@@ -90,19 +89,20 @@ public class MON_GreenSlime extends Entity {
         actionLookCounter = 0;
         direction = gp.player.direction;
     }
-    public void checkDrop(){
+
+    public void checkDrop() {
 
         // CAST A DIE
-        int i = new Random().nextInt(100)+1;
+        int i = new Random().nextInt(100) + 1;
 
         // SET THE MONSTER DROP
-        if(i < 50) {
+        if (i < 50) {
             dropItem(new OBJ_Coin_Bronze(gp));
         }
-        if (i >= 50 && i  < 75){
-            dropItem( new OBJ_Heart(gp));
+        if (i >= 50 && i < 75) {
+            dropItem(new OBJ_Heart(gp));
         }
-        if (i >= 75 && i  < 100){
+        if (i >= 75 && i < 100) {
             dropItem(new OBJ_ManaCrystal(gp));
         }
 
