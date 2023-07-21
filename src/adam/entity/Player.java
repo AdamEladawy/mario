@@ -6,6 +6,7 @@ import object.OBJ_Fireball;
 import object.OBJ_Key;
 import object.OBJ_Shield_Wood;
 import object.OBJ_Sword_Normal;
+import tile_interactive.InteractiveTile;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -185,6 +186,11 @@ public class Player extends Entity {
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
             contactMonster(monsterIndex);
 
+            // CHECK INTERACTIVE COLLISION
+            int iTileIndex = gp.cChecker.checkEntity(this,gp.iTile);
+
+
+
 
             //  CHECK EVENT COLLISION
             gp.eHandler.checkEvent();
@@ -263,6 +269,12 @@ public class Player extends Entity {
         if(shotAvailableCounter < 30){
             shotAvailableCounter++;
         }
+        if (life > maxLife){
+            life  = maxLife;
+        }
+        if (mana  > maxMana){
+           mana = maxMana;
+        }
     }
 
     public void attacking() {
@@ -306,6 +318,9 @@ public class Player extends Entity {
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
             damageMonster(monsterIndex,attack);
 
+            int iTileIndex  = gp.cChecker.checkEntity(this,gp.iTile);
+            damageInteractiveTile(iTileIndex);
+
             // After checking ,restore the original data
             worldX = currentWorldX;
             worldY = currentWorldY;
@@ -322,52 +337,65 @@ public class Player extends Entity {
 
     }
 
+
     public void pickUpObject(int i) {
         if (i != 999) {
-            String text;
-            if (inventory.size() != maxInventorySize) {
 
-                inventory.add(gp.obj[i]);
-                gp.playSE(1);
-                text = "Got a " + gp.obj[i].name + "!";
+            // PICK ONLY ITEMS
+            if (gp.obj[i].type == type_pickupOnly){
 
-            } else {
-                text = "You can not carry any more!`";
+                gp.obj[i].use(this);
+                gp.obj[i] = null;
             }
-            gp.ui.addMessage(text);
-            gp.obj[i] = null;
 
-            //String objectName = gp.obj[i].name;
+            // INVENTORY ITEMS
+            else {
+                String text;
+                if (inventory.size() != maxInventorySize) {
+
+                    inventory.add(gp.obj[i]);
+                    gp.playSE(1);
+                    text = "Got a " + gp.obj[i].name + "!";
+
+                } else {
+                    text = "You can not carry any more!`";
+                }
+                gp.ui.addMessage(text);
+                gp.obj[i] = null;
+
+                //String objectName = gp.obj[i].name;
 //switch (objectName){
-            //  case "Key":
-            //  gp.playSE(1);
-            // hasKey++;
-            ///gp.obj[i] = null;
-            //gp.ui.showMessage("You got a key!");
+                //  case "Key":
+                //  gp.playSE(1);
+                // hasKey++;
+                ///gp.obj[i] = null;
+                //gp.ui.showMessage("You got a key!");
 
-            // break;
-            // case "Door":
-            //   if (hasKey > 0) {
-            //  gp.playSE(3);
-            //  gp.obj[i] = null;
-            //  hasKey--;
-            //  gp.ui.showMessage("You opened a Door!");
+                // break;
+                // case "Door":
+                //   if (hasKey > 0) {
+                //  gp.playSE(3);
+                //  gp.obj[i] = null;
+                //  hasKey--;
+                //  gp.ui.showMessage("You opened a Door!");
 
-            // } else {
-            //  gp.ui.showMessage("You need a key");
-            // }
-            // break;
-            // case "Boots":
-            //gp.playSE(2);
-            // speed += 1;
-            // gp.obj[i] = null;
-            // gp.ui.showMessage("speed up!");
-            // break;
-            // case "Chest":
-            ///  gp.ui.gameFinished = true;
-            //  gp.stopMusic();
-            //  gp.playSE(4);
-            //   break;
+                // } else {
+                //  gp.ui.showMessage("You need a key");
+                // }
+                // break;
+                // case "Boots":
+                //gp.playSE(2);
+                // speed += 1;
+                // gp.obj[i] = null;
+                // gp.ui.showMessage("speed up!");
+                // break;
+                // case "Chest":
+                ///  gp.ui.gameFinished = true;
+                //  gp.stopMusic();
+                //  gp.playSE(4);
+                //   break;
+            }
+
 
         }
 
@@ -428,6 +456,24 @@ public class Player extends Entity {
                     exp += gp.monster[i].exp;
                     checkLevelUp();
                 }
+            }
+        }
+    }
+    public void damageInteractiveTile(int i){
+
+        if(i != 999 && gp.iTile[i].destructible == true
+                && gp.iTile[i].isCorrectItem(this) == true && gp.iTile[i].invincible == false){
+
+            gp.iTile[i].playSE();
+            gp.iTile[i].life --;
+            gp.iTile[i].invincible = true;
+
+            // Generate PArticle
+            generateParticle(gp.iTile[i],gp.iTile[i]);
+
+
+            if (gp.iTile[i].life == 0){
+                gp.iTile[i] = gp.iTile[i].getDestroyedForm();
             }
         }
     }
