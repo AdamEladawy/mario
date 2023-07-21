@@ -46,7 +46,7 @@ public class AssetSetter {
         gp.obj[i] = new OBJ_Heart(gp);
         gp.obj[i].worldX = gp.tileSize * 22;
         gp.obj[i].worldY = gp.tileSize * 29;
-       i++;
+        i++;
         gp.obj[i] = new OBJ_ManaCrystal(gp);
         gp.obj[i].worldX = gp.tileSize * 22;
         gp.obj[i].worldY = gp.tileSize * 31;
@@ -88,15 +88,22 @@ public class AssetSetter {
         i++;
 
     }
-    public void setInteractiveTiles(){
+
+    public void setInteractiveTiles() {
 
         int i = 0;
-        gp.iTile[i] = new IT_DryTree(gp,27,12);i++;
-        gp.iTile[i] = new IT_DryTree(gp,28,12);i++;
-        gp.iTile[i] = new IT_DryTree(gp,29,12);i++;
-       gp.iTile[i] = new IT_DryTree(gp,30,12);i++;
-        gp.iTile[i] = new IT_DryTree(gp,31,12);i++;
-       gp.iTile[i] = new IT_DryTree(gp,32,12);i++;
+        gp.iTile[i] = new IT_DryTree(gp, 27, 12);
+        i++;
+        gp.iTile[i] = new IT_DryTree(gp, 28, 12);
+        i++;
+        gp.iTile[i] = new IT_DryTree(gp, 29, 12);
+        i++;
+        gp.iTile[i] = new IT_DryTree(gp, 30, 12);
+        i++;
+        gp.iTile[i] = new IT_DryTree(gp, 31, 12);
+        i++;
+        gp.iTile[i] = new IT_DryTree(gp, 32, 12);
+        i++;
 //        gp.iTile[i] = new IT_DryTree(gp,33,12);i++;
 //        gp.iTile[i] = new IT_DryTree(gp,21,19);i++;
 //        gp.iTile[i] = new IT_DryTree(gp,22,19);i++;

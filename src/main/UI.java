@@ -4,7 +4,6 @@ import adam.entity.Entity;
 import object.OBJ_Heart;
 import object.OBJ_ManaCrystal;
 
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -24,7 +23,7 @@ public class UI {
     Graphics2D g2;
     Font arial_40, arial_80B;
     Font PixelColeco, AncientTales;
-    BufferedImage heart_full, heart_half, heart_blank,crystal_full,crystal_blank;
+    BufferedImage heart_full, heart_half, heart_blank, crystal_full, crystal_blank;
     ////    public String message = "";
 ////    int messageCounter = 0;
     ArrayList<String> message = new ArrayList<>();
@@ -141,20 +140,20 @@ public class UI {
 
         }
         // DRAW MAX MANA
-        x = (gp.tileSize/ 2)-5;
-        y = (int)(gp.tileSize*1.5);
+        x = (gp.tileSize / 2) - 5;
+        y = (int) (gp.tileSize * 1.5);
         i = 0;
-        while (i < gp.player.maxMana){
-            g2.drawImage(crystal_blank,x,y,null);
-            i ++;
+        while (i < gp.player.maxMana) {
+            g2.drawImage(crystal_blank, x, y, null);
+            i++;
             x += 35;
         }
         // DRAW MANA
-        x = (gp.tileSize/ 2)-5;
-        y = (int)(gp.tileSize*1.5);
+        x = (gp.tileSize / 2) - 5;
+        y = (int) (gp.tileSize * 1.5);
         i = 0;
-        while (i < gp.player.mana){
-            g2.drawImage(crystal_full,x,y,null);
+        while (i < gp.player.mana) {
+            g2.drawImage(crystal_full, x, y, null);
             i++;
             x += 35;
         }
@@ -342,18 +341,30 @@ public class UI {
         final int lineHeight = 35;
 
         // NAMES
-        g2.drawString("Level", textX, textY);textY += lineHeight;
-        g2.drawString("Life", textX, textY);textY += lineHeight;
-        g2.drawString("Mana", textX, textY);textY += lineHeight;
-        g2.drawString("Strength", textX, textY);textY += lineHeight;
-        g2.drawString("Dexterity", textX, textY);textY += lineHeight;
-        g2.drawString("Attack", textX, textY);textY += lineHeight;
-        g2.drawString("Defense", textX, textY);textY += lineHeight;
-        g2.drawString("Exp", textX, textY);textY += lineHeight;
-        g2.drawString("Next Level", textX, textY);textY += lineHeight;
-        g2.drawString("Coin", textX, textY);textY += lineHeight + 10;
-        g2.drawString("Weapon", textX, textY);textY += lineHeight + 15;
-        g2.drawString("Shield", textX, textY);textY += lineHeight;
+        g2.drawString("Level", textX, textY);
+        textY += lineHeight;
+        g2.drawString("Life", textX, textY);
+        textY += lineHeight;
+        g2.drawString("Mana", textX, textY);
+        textY += lineHeight;
+        g2.drawString("Strength", textX, textY);
+        textY += lineHeight;
+        g2.drawString("Dexterity", textX, textY);
+        textY += lineHeight;
+        g2.drawString("Attack", textX, textY);
+        textY += lineHeight;
+        g2.drawString("Defense", textX, textY);
+        textY += lineHeight;
+        g2.drawString("Exp", textX, textY);
+        textY += lineHeight;
+        g2.drawString("Next Level", textX, textY);
+        textY += lineHeight;
+        g2.drawString("Coin", textX, textY);
+        textY += lineHeight + 10;
+        g2.drawString("Weapon", textX, textY);
+        textY += lineHeight + 15;
+        g2.drawString("Shield", textX, textY);
+        textY += lineHeight;
 
         //VALUES
 
