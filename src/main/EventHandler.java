@@ -102,6 +102,7 @@ public class EventHandler {
 
 
         gp.gameState = gameState;
+        gp.playSE(6);
         gp.ui.currentDialogue = "you fall into a pit";
         gp.player.life -= 1;
         // eventRect[col][row].eventDone = true;
@@ -112,9 +113,13 @@ public class EventHandler {
 
         if (gp.keyH.enterPressed) {
 
+            gp.player.attackCancel = true;
             gp.gameState = gameState;
-            gp.ui.currentDialogue = "You drank the water./n Your life has been recovered";
+            gp.playSE(2);
+            gp.ui.currentDialogue = "You drank the water./nYour life and mana have /nbeen recovered";
             gp.player.life = gp.player.maxLife;
+            gp.player.mana = gp.player.maxMana;
+            gp.aSetter.setMonster();
 
         }
 
