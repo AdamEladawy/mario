@@ -122,7 +122,7 @@ public class GamePanel extends JPanel implements Runnable {
     // }
     // delta method for game developing
     public void run() {
-        double drawInterval = 1000000000 / Fps;
+        double drawInterval = 1000000000f / Fps;
         double delta = 0;
         long lastTime = System.nanoTime();
         long currentTime;
@@ -142,7 +142,7 @@ public class GamePanel extends JPanel implements Runnable {
                 drawCount++;
             }
             if (timer >= 1000000000) {
-                System.out.println("FPS:" + drawCount);
+                //System.out.println("FPS:" + drawCount);
                 drawCount = 0;
                 timer = 0;
             }

@@ -5,9 +5,9 @@ import main.GamePanel;
 import java.util.Random;
 
 
-public class NPC_OldMan extends Entity {
+public class OldMan extends Entity {
 
-    public NPC_OldMan(GamePanel gp) {
+    public OldMan(GamePanel gp) {
         super(gp);
 
         direction = "down";
