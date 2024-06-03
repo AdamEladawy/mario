@@ -197,7 +197,8 @@ public class UI {
 
 
         ///if (titleScreenState == 0) {
-        g2.setColor(new Color(0, 0, 0));
+        g2.setColor(Color.BLACK);
+        g2.fillRect(0,0,gp.getWidth(),gp.getHeight());
 
 
         // TITLE NAME
