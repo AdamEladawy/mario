@@ -197,8 +197,9 @@ public class UI {
 
 
         ///if (titleScreenState == 0) {
-        g2.setColor(new Color(0, 0, 0));
+        g2.setColor(Color.black);
 
+        g2.fillRoundRect(0,0, gp.getWidth(),gp.getHeight(), 0,0);
 
         // TITLE NAME
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 70F));//70F
@@ -825,4 +826,3 @@ public class UI {
 // messageOn = false;
 //  }
 //}
-
