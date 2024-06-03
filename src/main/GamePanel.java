@@ -49,8 +49,10 @@ public class GamePanel extends JPanel implements Runnable {
     public ArrayList<Entity> particleList = new ArrayList<>();
     //GAME STATE
     public int gameState;
+    public final int optionsState = 5;
     BufferedImage tempScreen;
     Graphics2D g2;
+    public boolean fullScreenOn = false;
     ArrayList<Entity> entityList = new ArrayList<>();
     Thread gameThread;
 
