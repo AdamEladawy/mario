@@ -15,7 +15,6 @@ import java.util.Comparator;
 public class GamePanel extends JPanel implements Runnable {
 
     // SCREEN SETTINGS
-
     public final int maxScreenCol = 20;
     public final int maxScreenRow = 12;
     // WORLD SETTINGS
@@ -53,6 +52,7 @@ public class GamePanel extends JPanel implements Runnable {
     //GAME STATE
     public int gameState;
     public final int optionsState = 5;
+    public final int transitionState = 7;
     BufferedImage tempScreen;
     Graphics2D g2;
     public boolean fullScreenOn = false;
