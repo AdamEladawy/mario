@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Entity {
 
@@ -26,6 +27,8 @@ public class Entity {
     public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collision = false;
+    public final int maxInventorySize = 20;
+    public ArrayList<Entity> inventory = new ArrayList<>();
     //STATE
     public int worldX, worldY;
     public String direction = "down";
@@ -64,6 +67,7 @@ public class Entity {
     public int defenseValue;
     public String description = "";
     public int useCost;
+    public int price;
     //TYPE
     public int type;// 0 = player,1 = npc,2 = monster
     int dyingCounter = 0;
@@ -124,11 +128,11 @@ public class Entity {
 
     public void dropItem(Entity droppedItem) {
 
-        for (int i = 0; i < gp.obj.length; i++) {
-            if (gp.obj[i] == null) {
-                gp.obj[i] = droppedItem;
-                gp.obj[i].worldX = worldX;// the dead monster's worldX
-                gp.obj[i].worldY = worldY;
+        for (int i = 0; i < gp.obj[1].length; i++) {
+            if (gp.obj[gp.currentMap][i] == null) {
+                gp.obj[gp.currentMap][i] = droppedItem;
+                gp.obj[gp.currentMap][i].worldX = worldX;// the dead monster's worldX
+                gp.obj[gp.currentMap][i].worldY = worldY;
                 break;
             }
         }
@@ -206,7 +210,7 @@ public class Entity {
         }
 
         spriteCounter++;
-        if (spriteCounter > 10) {
+        if (spriteCounter > 24) {
             if (spriteNum == 1) {
                 spriteNum = 2;
             } else if (spriteNum == 2) {
