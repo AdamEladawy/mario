@@ -53,6 +53,7 @@ public class GamePanel extends JPanel implements Runnable {
     public int gameState;
     public final int optionsState = 5;
     public final int transitionState = 7;
+    public final int tradeState = 8;
     BufferedImage tempScreen;
     Graphics2D g2;
     public boolean fullScreenOn = false;

@@ -13,6 +13,12 @@ public class OldMan extends Entity {
         direction = "down";
         speed = 1;
 
+        solidArea.x = 8;
+        solidArea.y = 16;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
+        solidArea.width = 32;
+        solidArea.height = 32;
 
         getImage();
         setDialogue();
@@ -38,7 +44,7 @@ public class OldMan extends Entity {
         dialogues[0] = "Hello, lad.";
         dialogues[1] = "So you've come to this /nisland to find the /ntreasure?";
         dialogues[2] = "I used a great wizard but /nnow...I'm a bit too old /nfor taking an adventure";
-        dialogues[3] = "well far well young /nlad , now   I must get /nwwgoing";
+        dialogues[3] = "well far well young /nlad,now I must get /ngoing";
 
     }
 
