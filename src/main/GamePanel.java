@@ -2,6 +2,7 @@ package main;
 
 import adam.entity.Entity;
 import adam.entity.Player;
+import ai.PathFinder;
 import tile.TileManager;
 import tile_interactive.InteractiveTile;
 
@@ -59,11 +60,12 @@ public class GamePanel extends JPanel implements Runnable {
     public boolean fullScreenOn = false;
     ArrayList<Entity> entityList = new ArrayList<>();
     Config config = new Config(this);
+    public PathFinder pFinder = new PathFinder(this);
     Thread gameThread;
 
     //fps
     int Fps = 60;
-    TileManager tileM = new TileManager(this);
+    public TileManager tileM = new TileManager(this);
     Sound music = new Sound();
     // ENTITY AND OBJECT
     Sound Se = new Sound();

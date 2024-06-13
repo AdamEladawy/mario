@@ -50,37 +50,45 @@ public class OldMan extends Entity {
 
 
     public void setAction() {
+        if (onPath == true){
 
-        actionLookCounter++;
+            int goalCol = 12;
+            int goalRow = 9;
 
-        if (actionLookCounter == 120) {
-
-            Random random = new Random();
-            int i = random.nextInt(100) + 1;// pick a number between 1-100
-            if (i <= 25) {
-                direction = "up";
-
-            }
-            if (i > 25 && i <= 50) {
-                direction = "down";
-
-            }
-            if (i > 50 && i <= 75) {
-                direction = "left";
-            }
-            if (i > 75 && i <= 100) {
-                direction = "right";
-            }
-            actionLookCounter = 0;
+            searchPath(goalCol,goalRow);
         }
+        else {
 
+            actionLookCounter++;
 
+            if (actionLookCounter == 120) {
+
+                Random random = new Random();
+                int i = random.nextInt(100) + 1;// pick a number between 1-100
+                if (i <= 25) {
+                    direction = "up";
+
+                }
+                if (i > 25 && i <= 50) {
+                    direction = "down";
+
+                }
+                if (i > 50 && i <= 75) {
+                    direction = "left";
+                }
+                if (i > 75 && i <= 100) {
+                    direction = "right";
+                }
+                actionLookCounter = 0;
+            }
+        }
     }
 
     public void speak() {
         super.speak();
 
 
+        onPath = true;
     }
 
 
