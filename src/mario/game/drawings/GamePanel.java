@@ -1,5 +1,6 @@
 package mario.game.drawings;
 
+import ai.PathFinder;
 import mario.Main;
 import mario.game.Config;
 import mario.game.drawings.tile.TileManager;
@@ -56,11 +57,15 @@ public class GamePanel extends JPanel implements Runnable {
     public ArrayList<Entity> particleList = new ArrayList<>();
     //GAME STATE
     private int gameState;
+    public final int optionsState = 5;
+    public final int transitionState = 7;
+    public final int tradeState = 8;
     private BufferedImage tempScreen;
     private Graphics2D g2;
     private boolean fullScreenOn = false;
     private ArrayList<Entity> entityList = new ArrayList<>();
     private Config config = new Config(this);
+    public PathFinder pFinder = new PathFinder(this);
     private Thread gameThread;
 
     //fps
