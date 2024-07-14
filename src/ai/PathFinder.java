@@ -1,6 +1,6 @@
 package ai;
 
-import main.GamePanel;
+import mario.game.drawings.GamePanel;
 
 import java.util.ArrayList;
 
@@ -81,8 +81,8 @@ public class PathFinder {
          while (col < gp.maxWorldCol && row < gp.maxWorldRow){
 
              // SET SOLID NODE
-             int tileNum = gp.tileM.mapTileNum[gp.currentMap][col][row];
-             if (gp.tileM.tile[tileNum].collision){
+             int tileNum = gp.getTileM().mapTileNum[gp.currentMap][col][row];
+             if (gp.getTileM().tile[tileNum].collision){
                  node[col][row].solid = true;
 
              }
